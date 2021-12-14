@@ -18,7 +18,7 @@ const { validJWT }      = require('../middlewares/validar-jwt');
 /**
  * RUTA PARA OBTENER TODOS LOS PRODUCTOS
  */
-router.get( '/', validJWT , product.getProducts);
+router.get( '/',  product.getProducts);
 
 /**
  * RUTA PARA CREAR UN NUEVO PRODUCTO 

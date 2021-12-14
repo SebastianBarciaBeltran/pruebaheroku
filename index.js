@@ -1,7 +1,7 @@
 // IMPORTS
 const express    = require('express');
 const cors       = require('cors');
-
+const path       = require('path');
 // DB
 const { dbConnection } = require('./db/config');
 
@@ -20,7 +20,6 @@ dbConnection();
 // DIRECTORIO PUBLICO
 app.use( express.static('public'));
 
-
 // MIDDLEWARE PARA PODER LEER LA INFORMACION DEL BODY
 app.use( express.json());
 
@@ -34,6 +33,12 @@ app.use( '/api/all',             require( './routes/search'  ));
 app.use( '/api/login',           require( './routes/auth'    ));
 app.use( '/api/uploads/',        require('./routes/uploads') );
 app.use( '/api/contactMessage/', require('./routes/contactMessage') );
+
+
+// LO ULTIMO 
+app.get('*', (req, res) => {
+    res.sendfile( path.resolve(__dirname, 'public/index.html') );
+});
 
 // ---  LEVANTAMOS LA APP DE EXPRESS --- //
 app.listen( process.env.PORT , () => {
