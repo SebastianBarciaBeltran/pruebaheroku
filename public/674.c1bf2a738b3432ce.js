@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkoptivistaFrontEnd=self.webpackChunkoptivistaFrontEnd||[]).push([[674],{1674:(e,o,u)=>{u.r(o),u.d(o,{AuthModule:()=>l});var d=u(9948),n=u(1223);let l=(()=>{class t{}return t.\u0275fac=function(a){return new(a||t)},t.\u0275mod=n.oAB({type:t}),t.\u0275inj=n.cJS({imports:[[d.D]]}),t})()}}]);

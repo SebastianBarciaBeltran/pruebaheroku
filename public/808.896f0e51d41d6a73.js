@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkoptivistaFrontEnd=self.webpackChunkoptivistaFrontEnd||[]).push([[808],{7808:(M,o,n)=>{n.r(o),n.d(o,{ClientModule:()=>_});var d=n(9808),u=n(4496),E=n(4466),l=n(1223);let _=(()=>{class t{}return t.\u0275fac=function(s){return new(s||t)},t.\u0275mod=l.oAB({type:t}),t.\u0275inj=l.cJS({imports:[[d.ez,u.C,E.m]]}),t})()}}]);
