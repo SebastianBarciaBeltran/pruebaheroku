@@ -26,18 +26,19 @@ app.use( express.json());
 // --- CONFIGURAMOS LAS RUTAS
 
 // RUTAS reparando 
-app.use( '/api/users',           require( './routes/users'   ));
-app.use( '/api/products',        require( './routes/product' ));
-app.use( '/api/brands',          require( './routes/brand'   ));
-app.use( '/api/all',             require( './routes/search'  ));
-app.use( '/api/login',           require( './routes/auth'    ));
-app.use( '/api/uploads/',        require('./routes/uploads') );
-app.use( '/api/contactMessage/', require('./routes/contactMessage') );
+app.use( '/api/users',           require( './routes/users'          ));
+app.use( '/api/products',        require( './routes/product'        ));
+app.use( '/api/brands',          require( './routes/brand'          ));
+app.use( '/api/all',             require( './routes/search'         ));
+app.use( '/api/login',           require( './routes/auth'           ));
+app.use( '/api/uploads/',        require( './routes/uploads'        ));
+app.use( '/api/contactMessage/', require( './routes/contactMessage' ));
+app.use( '/api/newsletter/',     require( './routes/newsletter'     ));
 
 
 // LO ULTIMO 
 app.get('*', (req, res) => {
-    res.sendfile( path.resolve(__dirname, 'public/index.html') );
+    res.sendFile( path.resolve(__dirname, 'public/index.html') );
 });
 
 // ---  LEVANTAMOS LA APP DE EXPRESS --- //

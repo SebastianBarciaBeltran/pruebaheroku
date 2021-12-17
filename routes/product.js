@@ -48,7 +48,7 @@ router.put('/:id', [
         check('colorCristal', 'El colorCristal es obligatorio').not().isEmpty(),
         check('colorMontura', 'El colorMontura es obligatorio').not().isEmpty(),
         check('gender', 'El gender es obligatorio').not().isEmpty(),
-        check('brand', 'El id de marca debe ser valido').isMongoId(),
+        // check('brand', 'El id de marca debe ser valido').isMongoId(),
         validarCampos
     ], product.updateProduct);
 

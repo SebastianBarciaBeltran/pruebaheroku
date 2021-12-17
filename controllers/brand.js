@@ -45,8 +45,8 @@ const getBrands = async(req, res = response) => {
     const from = Number(req.query.from) || 0;
 
     const [ brands, total ] = await Promise.all([
-        Brand.find()
-                .skip( from ),
+        Brand.find().populate('user', 'name'),
+                // .skip( from ),
                 // .limit( 5 ),
 
         Brand.count()
@@ -135,6 +135,32 @@ const deleteBrand = async(req, res = response) => {
 
 }
 
+// OBTENEMOS UNA MARCA POR ID
+const getBrandById = async(req, res = response) => {
+
+    const brandId = req.params.id;
+
+    try {
+        
+        const brand = await Brand.findById( brandId )
+                                 .populate('user', 'name');
+
+
+        return res.json({
+            ok: true,
+            brand
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            ok: false,
+            msg: 'Por favor hable con el administrador(brandByIdBrandErr)'
+        }); 
+    }
+
+}
+
 
 
 
@@ -143,5 +169,6 @@ module.exports = {
     setBrand,
     getBrands,
     updateBrand,
-    deleteBrand
+    deleteBrand,
+    getBrandById
 }

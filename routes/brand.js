@@ -47,6 +47,11 @@ router.post('/', [
  */
 router.delete('/:id', validJWT, brand.deleteBrand);
 
+/**
+ * RUTA PARA obtener una marca por id
+ */
+router.get('/:id', validJWT, brand.getBrandById);
+
 
 
 module.exports = router;

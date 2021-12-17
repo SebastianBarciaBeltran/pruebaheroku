@@ -37,9 +37,7 @@ router.put( '/:id', [
     check('name', 'El nombre es obligatorio').not().isEmpty(),
     check('email', 'El email es obligatorio').isEmail(),
     check('role', 'El role es obligatorio').not().isEmpty(),
-    check('birthDate', 'La edad es obligatorio').not().isEmpty(),
-    check('sexo', 'El nombre es obligatorio').not().isEmpty(),
-    check('phone', 'El telefono es obligatorio').not().isEmpty(),
+
     validarCampos
  ],  
 userController.updateUser );
