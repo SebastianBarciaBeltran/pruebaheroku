@@ -34,7 +34,9 @@ app.use( '/api/login',           require( './routes/auth'           ));
 app.use( '/api/uploads/',        require( './routes/uploads'        ));
 app.use( '/api/contactMessage/', require( './routes/contactMessage' ));
 app.use( '/api/newsletter/',     require( './routes/newsletter'     ));
-
+app.use( '/api/blogs/',          require( './routes/blog'           ));
+app.use( '/api/citas/',          require( './routes/cita'           ));
+ 
 
 // LO ULTIMO 
 app.get('*', (req, res) => {

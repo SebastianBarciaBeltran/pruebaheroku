@@ -5,6 +5,7 @@ const fs = require('fs');
 const User    = require('../models/User');
 const Brand   = require('../models/Brand');
 const Product = require('../models/Product');
+const Blog   = require('../models/Blog')
 
 // FUNCION PARA ELIMINAR UNA IMG
 const deletedImage = ( path ) => {
@@ -80,6 +81,26 @@ const updateImage = async(tipo, id,  nombreArchivo ) => {
             return true;
 
         break;
+
+        case 'blogs':
+
+            const blog =  await Blog.findById( id );
+
+            if ( !blog ) {
+                console.log('No es un Blog por id');
+                return false; // SIGNIFICA QUE LA IMAGEN NO SE HA PODIDO SUBIR
+            }
+
+            // EVALUAMOS SI ESE PRODUCT TIENE UNA IMAGEN PREVIAMENTE ASIGNADA
+            pathViejo =  `./uploads/blogs/${ blog.img }`;
+            deletedImage( pathViejo );
+
+            blog.img = nombreArchivo;
+            await blog.save();
+
+            return true;
+
+        break;
     
         default:
         
@@ -92,5 +113,6 @@ const updateImage = async(tipo, id,  nombreArchivo ) => {
 
 // EXPORTAMOS
 module.exports = {
-    updateImage
+    updateImage,
+    deletedImage
 }

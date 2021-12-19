@@ -3,6 +3,10 @@ const { response } = require('express');
 // MODELS
 const Brand = require('../models/Brand');
 
+
+// Eliminar imagen 
+const eliminarImagen = require('../helpers/update-image');
+
 // CREAMOS UNA NUEVA MARCA
 const setBrand = async(req, res = response) => {
 
@@ -116,6 +120,9 @@ const deleteBrand = async(req, res = response) => {
                 msg: 'No existe la marca por ese id en la BD'
             });
         }
+        // EVALUAMOS SI ESE BLOG TIENE UNA IMAGEN PREVIAMENTE ASIGNADA
+        pathViejo =  `./uploads/brands/${ brand.img }`;
+        eliminarImagen.deletedImage( pathViejo );   
 
         // SI EXISTE LO BORRAMOS
         await Brand.findByIdAndRemove( brandId );

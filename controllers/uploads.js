@@ -14,7 +14,7 @@ const fileUpdload = (req, res = response) => {
     const id   = req.params.id;
 
     // VALIDAMOS LOS TIPOS
-    const tiposValidos = ['users', 'products', 'brands'];
+    const tiposValidos = ['users', 'products', 'brands', 'blogs'];
 
     if ( !tiposValidos.includes(tipo) ) {
         return res.status(400).json({

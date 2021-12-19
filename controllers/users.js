@@ -7,6 +7,9 @@ const User = require('../models/User');
 // HELPERS
 const { generateJWT } = require('../helpers/jwt');
 
+// Eliminar imagen 
+const eliminarImagen = require('../helpers/update-image');
+
 
 // OPERACION PARA CREAR UN NUEVO USUARIO
 const setUser = async(req, res = response) => {
@@ -161,6 +164,12 @@ const deleteUser = async(req, res = response) => {
                 msg: 'No existe un usuario por ese id'
             });
         }
+
+        
+        // EVALUAMOS SI ESE BLOG TIENE UNA IMAGEN PREVIAMENTE ASIGNADA
+        pathViejo =  `./uploads/users/${ userDB.img }`;
+        eliminarImagen.deletedImage( pathViejo );   
+      
 
         await User.findByIdAndRemove( uid );
 

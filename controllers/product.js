@@ -4,6 +4,9 @@ const { response } = require('express');
 // MODELS
 const Product = require('../models/Product');
 
+// Eliminar imagen 
+const eliminarImagen = require('../helpers/update-image');
+
 // CREAMOS UN NUEVO PRODUCTO
 const setProduct = async(req, res = response) => {
        
@@ -118,6 +121,10 @@ const deleteProduct = async(req, res = response) => {
                 msg: 'No existe el producto por ese id en la BD'
             });
         }
+
+        // EVALUAMOS SI ESE BLOG TIENE UNA IMAGEN PREVIAMENTE ASIGNADA
+        pathViejo =  `./uploads/products/${ product.img }`;
+        eliminarImagen.deletedImage( pathViejo );    
 
         // SI EXISTE LO BORRAMOS
         await Product.findByIdAndRemove( id );
