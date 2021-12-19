@@ -20,6 +20,11 @@ const nodemailer = require('../controllers/contactMessage');
  */
 router.post('/', nodemailer.sendContactEmail);
 
+/**
+ * RUTA PARA OBTENER TODAS LAS PERSONAS QUE HAN CONTACTADO POR LA WEB
+ */
+router.get('/', nodemailer.getCotacts);
+
 
 // EXPORTAMOS PARA SU USO EN OTRO LUGAR
 module.exports = router;

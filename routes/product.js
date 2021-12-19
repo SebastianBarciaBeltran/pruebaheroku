@@ -56,6 +56,10 @@ router.put('/:id', [
  * RUTA PARA ELIMINAR UN PRODUCTO POR SI ID
 */
 router.delete('/:id', validJWT, product.deleteProduct );
+/**
+ * RUTA PARA OBTENER TODOS LOS PRODUCTOS POR GENERO
+*/
+router.get('/:tipo',  product.getProductbyGender );
 
 // EXPORTAMOS PARA SU USO EN OTRO LUGAR
 module.exports = router;

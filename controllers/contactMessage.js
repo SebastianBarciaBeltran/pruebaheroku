@@ -77,7 +77,21 @@ const sendContactEmail = async (req, res = response) => {
 
 };
 
+const getCotacts = async (req, res = response ) => {
+
+    
+    const contacts = await Contact.find();
+
+    res.json({
+        contacts
+    });
+
+
+}
+
+
 // EXPORTAMOS 
 module.exports = {
-  sendContactEmail
+  sendContactEmail,
+  getCotacts
 }

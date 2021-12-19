@@ -1,14 +1,9 @@
 // IMPORTACIONES
 const { Schema, model } = require("mongoose");
 
-
 const NewsletterSchema = Schema({
    
-    email: {
-        type: String,
-        require: true,
-        unique: true
-    },
+    email: { type: String, require: true, unique: true },
 
  });
 

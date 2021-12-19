@@ -105,7 +105,7 @@ const updateProduct = async(req, res = response) => {
 
 }
 
-// ELIMINAMOS UN PRODUCTO POR SU ID
+// ELIMINAMOS UN PRODUCTO POR GENERO
 const deleteProduct = async(req, res = response) => {
     
     const id = req.params.id; // OBTENEMOS EL ID DE LA URL
@@ -144,10 +144,29 @@ const deleteProduct = async(req, res = response) => {
 
 }
 
+// OBTENEMOS TODOS LOS PRODUCTOS
+const getProductbyGender = async(req, res = response) => {
+
+    // OBTENEMOS LOS PRODUCTS
+    // SIN PAG
+        const tipo = req.params.tipo;
+
+    const products = await Product.find({gender: tipo});
+           
+
+    res.json({  
+        ok: true,
+        products
+    });
+
+}
+
+
 
 module.exports = {
     setProduct,
     getProducts,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getProductbyGender
 }
