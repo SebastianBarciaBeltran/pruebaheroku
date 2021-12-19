@@ -12,7 +12,7 @@ const router = Router();
 const nodemailer = require('../controllers/contactMessage');
 
 // MIDDLEWARES
-// const { validJWT } = require('../middlewares/validar-jwt');
+const { validJWT } = require('../middlewares/validar-jwt');
 // const { validarCampos } = require('../middlewares/validar-campos');
 
 /**
@@ -23,7 +23,10 @@ router.post('/', nodemailer.sendContactEmail);
 /**
  * RUTA PARA OBTENER TODAS LAS PERSONAS QUE HAN CONTACTADO POR LA WEB
  */
-router.get('/', nodemailer.getCotacts);
+router.get('/', validJWT, nodemailer.getCotacts);
+
+
+router.delete('/:id', validJWT ,nodemailer.deleteContact);
 
 
 // EXPORTAMOS PARA SU USO EN OTRO LUGAR

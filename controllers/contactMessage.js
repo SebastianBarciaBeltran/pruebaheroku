@@ -10,12 +10,12 @@ const OAuth2_client = new google.auth.OAuth2(process.env.CLIENT_ID, process.env.
 
 OAuth2_client.setCredentials( { refresh_token : process.env.REFRESH_TOKEN });
 
-// FUNCION PARA ENVIAR UN MAIL A LA PERSONA QUE CONTACTA 
-const sendContactEmail = async (req, res = response) => {
 
-    const {name, email, telephone, text, hidden, dateOfContact } = req.body;
+ sendContactEmail = async (req, res = response) => {
     
-    const accessToken = OAuth2_client.getAccessToken();
+    const {name, email, telephone, text, hidden, dateOfContact } = req.body;
+
+    const accessToken =  OAuth2_client.getAccessToken();
     
     const dbContact = new Contact( req.body );
     
@@ -83,9 +83,45 @@ const getCotacts = async (req, res = response ) => {
     const contacts = await Contact.find();
 
     res.json({
+        ok: true,
         contacts
     });
 
+
+}
+
+const deleteContact = async(req, res = response) => {
+
+    const contactId = req.params.id;
+
+    try {
+        
+        const contact = await Contact.findById( contactId );
+
+        if ( !contact ) { //SI NO EXISTE RETORNAMOS 404
+
+            return res.status(404).json({
+                ok: false,
+                msg: 'No existe contact por ese id en la BD'
+            });
+        }
+       
+
+        // SI EXISTE LO BORRAMOS
+        await Contact.findByIdAndRemove( contactId );
+
+        return res.json({
+            ok: true,
+            msg: 'contacto eliminado'
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            ok: false,
+            msg: 'Por favor hable con el administrador(eliminarContactErr)'
+        }); 
+    }
 
 }
 
@@ -93,5 +129,6 @@ const getCotacts = async (req, res = response ) => {
 // EXPORTAMOS 
 module.exports = {
   sendContactEmail,
-  getCotacts
+  getCotacts,
+  deleteContact
 }
